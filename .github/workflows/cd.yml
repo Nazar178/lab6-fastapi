@@ -2,15 +2,22 @@ name: CD
 on:
   push:
     branches: [ main ]
-
+ 
+permissions:
+  contents: read
+  packages: write
+ 
 jobs:
   docker-deploy:
     runs-on: ubuntu-latest
+ 
     steps:
     - uses: actions/checkout@v4
+ 
     - name: Login to GHCR
-      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u nazar178 --password-stdin
+      run: echo "${{ github.token }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+ 
     - name: Build and push
       run: |
-        docker build -t ghcr.io/nazar178/python-app .
-        docker push ghcr.io/nazar178/python-app
+        docker build -t ghcr.io/nazar178/python-app:latest .
+        docker push ghcr.io/nazar178/python-app:latest
