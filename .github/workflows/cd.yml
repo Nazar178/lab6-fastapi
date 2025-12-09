@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Login to GHCR
-      run: echo "${{ github.token }}" | docker login ghcr.io -u "${GITHUB_ACTOR,,}" --password-stdin
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u nazar178 --password-stdin
     - name: Build and push
       run: |
         docker build -t ghcr.io/nazar178/python-app:latest .
