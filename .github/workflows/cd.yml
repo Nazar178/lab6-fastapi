@@ -12,5 +12,5 @@ jobs:
       run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u nazar178 --password-stdin
     - name: Build and push
       run: |
-        docker build -t ghcr.io/nazar178/nazar178:latest .
-        docker push ghcr.io/nazar178/nazar178:latest
+        docker build -t ghcr.io/nazar178/python-app .
+        docker push ghcr.io/nazar178/python-app
